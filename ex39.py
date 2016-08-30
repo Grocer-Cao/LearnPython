@@ -23,5 +23,6 @@ Human = {"Name":"Oscar",
          "Sex":"Male",
          "Tel":"123-456-789"}
 
+print "\n\n"
 for aaa,bbb in Human.items():
-    print "%s abcd end" % aaa
+    print "%s abcd end %s" % (aaa,bbb)
