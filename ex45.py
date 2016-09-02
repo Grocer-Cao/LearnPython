@@ -58,13 +58,11 @@ class lock(Scene):
         print "please input the number which is a double-digit you guess!"
         # Debug
         number = "12"
-#        number = "%d%d" % (randint(0, 9), randint(0, 9))
+        #        number = "%d%d" % (randint(0, 9), randint(0, 9))
         guess = raw_input("-->")
         guesses = 0
 
-
-
-        #return 'speedorno'
+        # return 'speedorno'
         while guess != number and guesses < 20:
             guesses += 1
             print "input again"
@@ -101,16 +99,21 @@ class speedorno(Scene):
 
         print "you choose %r " % spdorno
 
-        print speedorno.results[randint(1, 4)]
- #       print self.results[1]
+        print speedorno.results[randint(0, 3)]
         return 'finished'
+
+
+class finished(object):
+    def enter(self):
+        exit(0)
 
 
 class Map(object):
     scenes = {
         'choosebike': choosebike(),
         'lock': lock(),
-        'speedorno': speedorno()
+        'speedorno': speedorno(),
+        'finished': finished()
     }
 
     def __init__(self, start_scene):
@@ -121,7 +124,6 @@ class Map(object):
 
     def opening_scene(self):  # the function of opening_scene  and use function next scene
         return self.next_scene(self.start_scene)
-
 
 start = Map('choosebike')
 game = Engine(start)
