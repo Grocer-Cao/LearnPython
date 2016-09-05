@@ -1,5 +1,5 @@
 from nose.tools import *
-from ex48 import lexicon
+from ex48.lexicon import lexicon
 
 def test_directions():
 	assert_equal(lexicon.scan("north"), [('direction', 'north')])

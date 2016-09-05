@@ -103,7 +103,7 @@ class speedorno(Scene):
         return 'finished'
 
 
-class finished(object):
+class finished(object):11235777747444444
     def enter(self):
         exit(0)
 
