@@ -1,15 +1,15 @@
 import web, datetime, os
 from bin import map
 
-urls = {
+urls = (
     '/', 'Index',
     '/hello', 'SayHello',
     '/image', 'Upload',
     '/game', 'GameEngine',
     '/entry', 'Entry'
-}
+)
 
-app = web.application(urls.local())
+app = web.application(urls, locals())
 
 # little hack so that debug mode works with sessions
 if web.config.get('_session') is None:
@@ -94,7 +94,7 @@ class Entry(object):
 class GameEngine(object):
     def GET(self):
         if session.room:
-            return render.show_room(room=session.room, name=session)
+            return render.show_room(room=session.room, name=session.name)
         else:
             # why is there here? do you need it?
             return render.you_died()
@@ -102,9 +102,9 @@ class GameEngine(object):
     def POST(self):
         form = web.input(action=None)
 
-        # there is a bug  here, can you fix it?
+        # there is a bug here, can you fix it?
         web.debug(session.room.name)
-        if session.room and session.room.name != "The End" and
+        if session.room and session.room.name != "The End" and form.action:
             session.room = session.room.go(form.action)
 
         web.seeother("/game")

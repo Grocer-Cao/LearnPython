@@ -1,8 +1,7 @@
 from nose.tools import *
 from bin.app import app
-from test.tools import assert_response
+from tests.tools import assert_response
 import os
-
 
 def test_Index():
     # check that we get a 404 on the / URL
@@ -17,13 +16,14 @@ def test_SayHello():
 
     # make sure default values work for the form
     resp = app.request("/hello", method="POST")
-    assert_response(resp, contain="Nobody")
+    assert_response(resp, contains="Nobody")
 
     # test that we get expected values
     data = {'name': 'Zed', 'greet': 'Hola'}
     resp = app.request("/hello", method="POST", data=data)
     assert_response(resp, contains="Zed")
 
+
 class MyFile:
-    def __init__(self,filename, ):
+    def __init__(self, filename, ):
         self.filename = filename
