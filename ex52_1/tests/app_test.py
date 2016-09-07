@@ -22,8 +22,3 @@ def test_SayHello():
     data = {'name': 'Zed', 'greet': 'Hola'}
     resp = app.request("/hello", method="POST", data=data)
     assert_response(resp, contains="Zed")
-
-
-class MyFile:
-    def __init__(self, filename, ):
-        self.filename = filename
