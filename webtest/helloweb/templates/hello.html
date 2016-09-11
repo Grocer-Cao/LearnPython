@@ -1,0 +1,21 @@
+$def with (greeting, another)
+<html>
+    <head>
+        <title>My webtest project</title>
+    </head>
+
+<body>
+$if greeting:
+    I just wanted to say <em style="color: green; font-size:2em;">$greeting</em>.
+    <!-- 换行符 <br> -->
+    <br>
+    <br>$another
+$else:
+    <em>Hello</em>,world!
+
+<!--超链接,用于返回fillform.html文件-->
+<a href="fillform">RETUEN</a>
+
+</body>
+
+</html>

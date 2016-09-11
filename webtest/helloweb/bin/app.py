@@ -6,7 +6,9 @@ import web
 # 这个浏览器请求
 urls = (
     '/', 'index',
-    '/cph', 'caoPH'
+    '/cph', 'caoPH',
+    '/hello', 'hello',
+    '/fillform', 'fillform'
 )
 
 # ?
@@ -15,7 +17,7 @@ app = web.application(urls, globals())
 render = web.template.render('templates/')
 
 
-class index:
+class index(object):
     def GET(self):
         greeting = "Hello World"
         # 将 templates 路径下的index.html文件作为返回值
@@ -24,10 +26,35 @@ class index:
         # return render.index(greeting=False)
 
 
-class caoPH:
+class caoPH(object):
     def GET(self):
         abc = "Hello CPH"
         return abc
+
+
+class hello(object):
+    def GET(self):
+        # web.input中的变量名字可以随便取,不一定非要叫name
+        # 在浏览器中输入 http://0.0.0.0:8080/hello?name=Oscar&greet=Hola
+        # 这样就可以实现包含多个参数
+        form = web.input(name="Nobody", greet=None)
+        if form.greet:
+            greeting = "%s, %s" % (form.greet, form.name)
+            # 回传给HTML文件时也可以实现多参数会传
+            return render.hello(greeting=greeting, another="Another line")
+        else:
+            return "ERROR: greet is required."
+
+
+class fillform(object):
+    def GET(self):
+        return render.fform()
+
+    def POST(self):
+        # 下文中的name与greet与fform.html文件中input中的名字相对应
+        form = web.input(name="Nobody", greet="Hello")
+        greeting = "%s, %s" % (form.greet, form.name)
+        return render.hello(greeting=greeting, another="Another line")
 
 
 # 判断是否以当前文件作为起始main执行程序
