@@ -1,19 +1,15 @@
-<!--这是HTML中注释的写法-->
-<!--模板文件是缩进敏感的-->
-
-<!--你可以看到初始定义一行中说这个模板需要使用一个叫greeting的参数-->
 $def with (greeting)
-
+<!--这是HTML文件中添加注释的方式-->
+<!--上面的def一定要写在第一行,括号中的greeting是传入参数-->
 <html>
     <head>
-        <!--这里的title项指的是网页标签顶部的名字-->
+        <!--这里设置的是网页标签栏中显示的名字-->
         <title>My webtest project</title>
     </head>
 
 <body>
 $if greeting:
-    I just wanted to say <em style="color: green; font-size:
-    2em;">$greeting</em>.
+    I just wanted to say <em style="color: green; font-size:2em;">$greeting</em>.
 $else:
     <em>Hello</em>,world!
 </body>
