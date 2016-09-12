@@ -1,16 +1,6 @@
 $def with (greeting)
-<!--这是HTML文件中添加注释的方式-->
-<!--上面的def一定要写在第一行,括号中的greeting是传入参数-->
-<html>
-    <head>
-        <!--这里设置的是网页标签栏中显示的名字-->
-        <title>My webtest project</title>
-    </head>
 
-<body>
 $if greeting:
     I just wanted to say <em style="color: green; font-size:2em;">$greeting</em>.
 $else:
     <em>Hello</em>,world!
-</body>
-</html>

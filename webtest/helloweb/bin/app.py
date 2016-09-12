@@ -14,7 +14,8 @@ urls = (
 # ?
 app = web.application(urls, globals())
 # 它将会去 templates 路径下查找相应的HTML文件
-render = web.template.render('templates/')
+# 通过增加 base 项来使他作为其它模板的基础模板
+render = web.template.render('templates/',base="layout")
 
 
 class index(object):
