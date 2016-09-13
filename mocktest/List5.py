@@ -17,7 +17,7 @@ print mockFoo
 
 # 由于return_value是一个类,所以得到的mockFoo也是一个类,
 # 所以应该要实例化再使用
-mockObj = mockFoo()
+mockObj =mockFoo()
 
 print mockObj
 

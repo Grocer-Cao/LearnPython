@@ -13,25 +13,19 @@ class Foo(object):
     def doFoo(self, argValue):
         pass
 
+fooObj = Foo()
 
 # create the mock object
-mockFoo = Mock(spec=Foo)
+mockFoo = Mock(return_value=fooObj)
 print mockFoo
 
 # assert_called_with
 # 用于检测:1、是否方法是否被调用 2、调用时传入参数是否是期望值
 # 注意:它只可以用于检测类,而不可以用于检测对象
-mockFoo.doFoo("narf")
-mockFoo.doFoo.assert_called_with("narf")
+mockFoo.callFoo()
+mockFoo.callFoo.assert_called_with()
 
-s = "oscar"
-mockFoo.doFoo(s)
-mockFoo.doFoo.assert_called_with("oscar")
+# 报错,因为callFoo不支持任何输入
+mockFoo.callFoo("Hello")
+mockFoo.callFoo.assert_called_with()
 
-d = 123456
-mockFoo.doFoo(d)
-mockFoo.doFoo.assert_called_with(123456)
-
-# 报错,原因是调用时传入参数与期望值(assert...后跟的)不符
-# mockFoo.doFoo("zort")
-# mockFoo.doFoo.assert_called_with("narf")
