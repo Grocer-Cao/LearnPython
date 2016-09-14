@@ -9,6 +9,10 @@ def test_index():
     assert_response(resp, status="404")
 
     # test our first GET request to /fillform
+    resp = app.request("/")
+    assert_response(resp, status="200")
+
+    # test our first GET request to /fillform
     resp = app.request("/fillform")
     assert_response(resp, status="200")
 
