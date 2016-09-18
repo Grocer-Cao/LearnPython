@@ -54,6 +54,7 @@ class fillform(object):
     def POST(self):
         # 下文中的name与greet与fform.html文件中input中的名字相对应
         form = web.input(name="Nobody", greet="Hello")
+        # 将获得的结果格式化输出
         greeting = "%s, %s" % (form.greet, form.name)
         return render.hello(greeting=greeting, another="Another line")
 

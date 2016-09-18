@@ -8,7 +8,7 @@ def test_index():
     resp = app.request("/xyz")
     assert_response(resp, status="404")
 
-    # test our first GET request to /fillform
+    # test our first GET request to /
     resp = app.request("/")
     assert_response(resp, status="200")
 
