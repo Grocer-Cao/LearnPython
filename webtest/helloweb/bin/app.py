@@ -1,5 +1,5 @@
 # coding: utf-8
-import web
+import web,datetime,os
 
 # 一个匹配目录,如果有人使用浏览器访问"/"这一级目录
 # web.py框架将找到并加载 class index,从而用它来处理
@@ -8,7 +8,9 @@ urls = (
     '/', 'index',
     '/cph', 'caoPH',
     '/hello', 'hello',
-    '/fillform', 'fillform'
+    '/fillform', 'fillform',
+    '/image', 'upload'
+    #'/favicon.ico', 'icon'
 )
 
 # ?
@@ -57,6 +59,33 @@ class fillform(object):
         # 将获得的结果格式化输出
         greeting = "%s, %s" % (form.greet, form.name)
         return render.hello(greeting=greeting, another="Another line")
+
+class upload(object):
+    def GET(self):
+        return render.uform()
+
+    def POST(self):
+        # 获取到了这张图片
+        form = web.input(myfile={})
+        # get the folder name
+        upload_time = datetime.datetime.now().strftime("%Y-%m-%d")
+        # create the folder 使用到了os的一些方法,通过这种方式来创造一个文件夹
+        folder = os.path.join('./static', upload_time)
+        if not os.access(folder, 1):
+            os.mkdir(folder)
+        # get the file name
+        filename = os.path.join(folder, form['myfile'].filename)
+        print (type(form['myfile']))
+        # 典型文件操作
+        with open(filename, 'wb') as f:
+            f.write(form['myfile'].file.read())
+            f.close()
+        # 显示该图片
+        return render.show(filename=filename)
+
+# class icon(object):
+#     def GET(self):
+#         raise web.seeother("/static/favicon.ico")
 
 
 # 判断是否以当前文件作为起始main执行程序
