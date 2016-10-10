@@ -1,0 +1,13 @@
+AUTHORS
+ChangeLog
+README.md
+setup.cfg
+setup.py
+webdemo/__init__.py
+webdemo.egg-info/PKG-INFO
+webdemo.egg-info/SOURCES.txt
+webdemo.egg-info/dependency_links.txt
+webdemo.egg-info/entry_points.txt
+webdemo.egg-info/not-zip-safe
+webdemo.egg-info/pbr.json
+webdemo.egg-info/top_level.txt

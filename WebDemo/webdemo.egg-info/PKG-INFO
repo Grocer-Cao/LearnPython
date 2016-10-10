@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: webdemo
+Version: 0.0.1.dev39
+Summary: Web Application Demo
+Home-page: UNKNOWN
+Author: author
+Author-email: author@example.com
+License: UNKNOWN
+Description: 
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
