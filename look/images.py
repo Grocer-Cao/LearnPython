@@ -6,6 +6,19 @@ import uuid
 
 import falcon
 
+ALLOWED_IMAGE_TYPES = (
+    'image/gif',
+    'image/jpg',
+    'image/jpeg',
+    'image/png',
+)
+
+
+def validate_image_type(req, resp, params):
+    if req.content_type not in ALLOWED_IMAGE_TYPES:
+        msg = 'Image type not allowed. Must be PNG, JPEG, or GIF'
+        raise falcon.HTTPBadRequest('Bad request', msg)
+
 
 def _media_type_to_ext(media_type):
     # 剥离'/images/'前缀
@@ -28,12 +41,13 @@ class Collection(object):
         resp.body = '{"message":"Hello world"}'
         resp.status = falcon.HTTP_200
 
+    # 设计一个检查上传文件类型的钩子
+    @falcon.before(validate_image_type)
     def on_post(self, req, resp):
         image_id = _generate_id()
         ext = _media_type_to_ext(req.content_type)
-        filename = image_id + '.' + ext
         # 创建一个文件名
-
+        filename = image_id + '.' + ext
         image_path = os.path.join(self.storage_path, filename)
         with open(image_path, 'wb') as image_file:
             while True:
@@ -56,6 +70,10 @@ class Item(object):
         resp.content_type = _ext_to_media_type(ext)
 
         image_path = os.path.join(self.storage_path, name)
-        #如果要使用stream必须加上stream_len
-        resp.stream = open(image_path, 'rb')
+        # 如果要使用stream必须加上stream_len
+        try:
+            resp.stream = open(image_path, 'rb')
+        except IOError:
+            raise falcon.HTTPNotFound()
+
         resp.stream_len = os.path.getsize(image_path)
